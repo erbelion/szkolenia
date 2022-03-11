@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Auth::routes();
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +17,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::user())
+        return view('user.home');
+    else
+        return view('guest.home');
 });
 
-Auth::routes();
+Route::get('/logowanie', function () {
+    return view('auth.login');
+})->middleware('guest');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/rejestracja', function () {
+    return view('auth.register');
+})->middleware('guest');
+
+
+// Route::get('logowanie', [LoginController::class, 'showLoginForm']);
