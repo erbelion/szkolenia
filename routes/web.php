@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CourseController;
 
 Auth::routes();
 
@@ -30,6 +32,19 @@ Route::get('/logowanie', function () {
 Route::get('/rejestracja', function () {
     return view('auth.register');
 })->middleware('guest');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('/kursy', [AdminController::class, 'courses'])->name('admin.courses');
+    Route::post('/kursy/nowy', [AdminController::class, 'newCourse'])->name('admin.courses.new');
+    Route::get('/kurs/{id}', [AdminController::class, 'editions'])->name('admin.editions');
+    Route::post('/kurs/{id}/nowa-edycja', [AdminController::class, 'newEdition'])->name('admin.editions.new');
+
+    Route::get('/miejsca', [AdminController::class, 'places'])->name('admin.places');
+    Route::post('/miejsca/nowy', [AdminController::class, 'newPlace'])->name('admin.places.new');
+});
+
+Route::get('/kurs/{id}', [CourseController::class, 'index'])->name('admin');
 
 
 // Route::get('logowanie', [LoginController::class, 'showLoginForm']);
