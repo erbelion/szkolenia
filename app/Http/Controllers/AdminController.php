@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Models\Course;
 use App\Models\Edition;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -55,12 +56,14 @@ class AdminController extends Controller
     {
         return view('admin.editions', [
             'editions' => Edition::where('course_id', $id)->paginate(10),
-            'course_id' => $id
+            'course' => Course::find($id)
         ]);
     }
 
     public function newEdition(Request $request, $id)
     {
+        $course = Course::find($id);
+
         $request->validate([
             'subtitle' => 'required',
             'description' => 'required',
@@ -72,19 +75,10 @@ class AdminController extends Controller
 
         $newEditionNo = Edition::where('course_id', $id)->count() + 1;
 
-        if($newEditionNo > Course::find($id)->editions_limit)
+        if($newEditionNo > $course->editions_limit)
             return redirect()->back()->with('errorMessage', 'Nie utworzono edycji - przekroczono limit');
 
-        Edition::create([
-            'subtitle' => $request->subtitle,
-            'description' => $request->description,
-            'price' => $request->price,
-            'users_limit' => $request->users_limit,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'edition_no' => $newEditionNo,
-            'course_id' => $id,
-        ]);
+        $course->edition()->create(Edition::simpleDataArray($request, $newEditionNo));
 
         return redirect()->back()->with('message', 'Utworzono edycję ' . $request->subtitle);
     }
@@ -109,5 +103,30 @@ class AdminController extends Controller
         Place::create(Place::simpleDataArray($request));
 
         return redirect()->back()->with('message', 'Utworzono nowe miejsce spotkań.');
+    }
+
+    public function meetings($id)
+    {
+        $meetings = Meeting::where('edition_id', $id)->paginate(10);
+
+        return view('admin.meetings', [
+            'meetings' => $meetings,
+            'edition' => Edition::find($id),
+            'places' => Place::all()
+        ]);
+    }
+
+    public function newMeeting(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'place_id' => 'required|integer',
+            'date' => 'required|date',
+        ]);
+
+        Edition::find($id)->meeting()->create(Meeting::simpleDataArray($request));
+
+        return redirect()->route('admin.meetings', $id)->with('message', 'Utworzono spotkanie.');
     }
 }

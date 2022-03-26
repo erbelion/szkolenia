@@ -26,7 +26,8 @@ class Course extends Model
         ];
     }    
 
-    public function editions(){
-        return $this->belongsToMany(Edition::class, 'id', 'course_id');
+    public function edition()
+    {
+        return $this->hasOne(Edition::class);
     }
 }

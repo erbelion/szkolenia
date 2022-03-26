@@ -20,19 +20,25 @@ class Edition extends Model
         'course_id',
     ];
 
-    public static function simpleDataArray($data){
+    public static function simpleDataArray($data, $newEditionNo){
         return [
             'subtitle' => $data->subtitle,
             'description' => $data->description,
             'price' => $data->price,
             'users_limit' => $data->users_limit,
             'start_date' => $data->start_date,
-            'end_date' => $data->end_date
+            'end_date' => $data->end_date,
+            'edition_no' => $newEditionNo
         ];
+    }
+
+    public function meeting()
+    {
+        return $this->hasOne(Meeting::class);
     }
 
     public function course()
     {
-        return $this->hasOne(Course::class, 'course_id', 'id');
+        return $this->belongsTo(Course::class);
     }
 }
