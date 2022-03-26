@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('organiser_url');
             $table->string('title');
             $table->string('description');
-            $table->smallInteger('editions_limit')->default(0);
+            $table->smallInteger('editions_limit')->default(100);
             $table->timestamps();
         });
     }

@@ -77,6 +77,10 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    @if(Auth::user()->rank == 1)
+                                        <a class="dropdown-item" href="/admin">Panel administratora</a>
+                                    @endif
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
