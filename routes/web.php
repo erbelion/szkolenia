@@ -39,6 +39,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/kursy/nowy', [AdminController::class, 'newCourse'])->name('admin.courses.new');
     Route::get('/kurs/{id}', [AdminController::class, 'editions'])->name('admin.editions');
     Route::post('/kurs/{id}/nowa-edycja', [AdminController::class, 'newEdition'])->name('admin.editions.new');
+    Route::get('/edycja/{id}', [AdminController::class, 'meetings'])->name('admin.meetings');
+    Route::post('/edycja/{id}/nowe-spotkanie', [AdminController::class, 'newMeeting'])->name('admin.meetings.new');
 
     Route::get('/miejsca', [AdminController::class, 'places'])->name('admin.places');
     Route::post('/miejsca/nowy', [AdminController::class, 'newPlace'])->name('admin.places.new');

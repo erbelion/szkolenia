@@ -7,7 +7,24 @@
     <br>
     <br>
     <div class="card">
-        <div class="card-header">Lista edycji dla kursu #{{$course_id}}:</div>
+        <div class="card-header">Kurs #{{$course->id}}</div>
+        <div class="card-body">
+            <h1>{{$course->title}}</h1>
+
+            Sponsor:
+            <a href="{{$course->organiser_url}}">{{$course->organiser_name}}</a>
+            <br>
+
+            Limit edycji: {{$course->editions_limit}}
+            <br>
+
+            Opis:
+            <br>
+            {{$course->description}}
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">Lista edycji dla kursu #{{$course->id}}:</div>
         <div class="card-body">
             <table class="table">
                 <thead>
@@ -27,7 +44,7 @@
                         <td>{{$edition->price / 100}} PLN</td>
                         <td>{{$edition->users_count}}</td>
                         <td>
-                            <a href="/admin/spotkania/{{$edition->id}}">
+                            <a href="/admin/edycja/{{$edition->id}}">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                         </td>
@@ -39,9 +56,9 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header">Dodawanie edycji dla kursu #{{$course_id}}:</div>
+        <div class="card-header">Dodawanie edycji dla kursu #{{$course->id}}:</div>
         <div class="card-body">
-            <form action="/admin/kurs/{{$course_id}}/nowa-edycja" method="post">
+            <form action="/admin/kurs/{{$course->id}}/nowa-edycja" method="post">
                 @csrf
                 <div class="form-group">
                     <label>Podtytuł</label>
@@ -61,11 +78,11 @@
                 </div>
                 <div class="form-group">
                     <label>Start</label>
-                    <input type="date" class="form-control" name="start_date" required>
+                    <input type="datetime-local" class="form-control" name="start_date" required>
                 </div>
                 <div class="form-group">
                     <label>Koniec</label>
-                    <input type="date" class="form-control" name="end_date" required>
+                    <input type="datetime-local" class="form-control" name="end_date" required>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Dodaj</button>
