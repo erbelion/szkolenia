@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header">Lista edycji dla kursu #{{$course->id}}:</div>
+        <div class="card-header">Lista edycji</div>
         <div class="card-body">
             <table class="table">
                 <thead>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header">Dodawanie edycji dla kursu #{{$course->id}}:</div>
+        <div class="card-header">Dodawanie edycji</div>
         <div class="card-body">
             <form action="/admin/kurs/{{$course->id}}/nowa-edycja" method="post">
                 @csrf

@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\EditionController;
+use App\Http\Controllers\DashboardController;
 
 Auth::routes();
 
@@ -18,12 +20,14 @@ Auth::routes();
 |
 */
 
-Route::get('/', function () {
-    if(Auth::user())
-        return view('user.home');
-    else
-        return view('guest.home');
-});
+// Route::get('/', function () {
+//     if(Auth::user())
+//         return view('user.home');
+//     else
+//         return view('guest.home');
+// });
+
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 Route::get('/logowanie', function () {
     return view('auth.login');
@@ -46,7 +50,10 @@ Route::prefix('admin')->group(function () {
     Route::post('/miejsca/nowy', [AdminController::class, 'newPlace'])->name('admin.places.new');
 });
 
-Route::get('/kurs/{id}', [CourseController::class, 'index'])->name('admin');
+Route::get('/edycja/{id}', [EditionController::class, 'index'])->name('edition');
+
+Route::get('/goscie', [GuestController::class, 'index'])->name('guests');
+Route::post('/goscie', [GuestController::class, 'store'])->name('guests.store');
 
 
 // Route::get('logowanie', [LoginController::class, 'showLoginForm']);

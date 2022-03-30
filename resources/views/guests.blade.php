@@ -1,5 +1,5 @@
 @extends('layouts.base')
 
 @section('body')
-    @include('elements.editions')
+    GOSCIE :D
 @endsection
