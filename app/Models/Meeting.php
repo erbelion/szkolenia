@@ -12,7 +12,8 @@ class Meeting extends Model
         'description',
         'place_id',
         'edition_id',
-        'date',
+        'start_date',
+        'end_date',
     ];
 
     public static function simpleDataArray($data){
@@ -20,7 +21,8 @@ class Meeting extends Model
             'title' => $data->title,
             'description' => $data->description,
             'place_id' => $data->place_id,
-            'date' => $data->date
+            'start_date' => $data->start_date,
+            'end_date' => $data->end_date
         ];
     }
 

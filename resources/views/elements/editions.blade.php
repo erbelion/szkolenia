@@ -1,6 +1,9 @@
+<br>
+<h1>lista edycji</h1>
+
 @foreach ($editions as $edition)
 <div class="card">
-    <div class="card-header">Kurs "{{$edition->title}}"</div>
+    <div class="card-header">Edycja kursu "{{$edition->title}}"</div>
     <div class="card-body">
         Edycja nr. {{$edition->edition_no}}
         <h1>{{$edition->subtitle}}</h1>
@@ -19,7 +22,7 @@
         {{$edition->description}}
         <br><br>
 
-        Użytkownicy:
+        Uczestnicy:
         {{$edition->users_count}}/{{$edition->users_limit}}
         <br>
 
@@ -28,7 +31,7 @@
         <br> <br>
 
         <a href="/edycja/{{$edition->id}}">
-            <button class="btn btn-primary">Cena: {{$edition->price / 100}} PLN</button>
+            <button class="btn btn-primary">Zobacz</button>
         </a>
     </div>
 </div>

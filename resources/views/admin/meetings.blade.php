@@ -15,7 +15,7 @@
             {{$edition->price / 100}} PLN
             <br>
 
-            Użytkownicy:
+            Uczestnicy:
             {{$edition->users_count}}/{{$edition->users_limit}}
             <br>
 
@@ -35,7 +35,8 @@
                 <thead>
                   <tr>
                     <th scope="col">Tytuł</th>
-                    <th scope="col">Data</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">Koniec</th>
                     <th scope="col">Miejsce</th>
                   </tr>
                 </thead>
@@ -43,7 +44,8 @@
                     @foreach($meetings as $meeting)
                     <tr>
                         <td>{{$meeting->title}}</td>
-                        <td>{{$meeting->date}}</td>
+                        <td>{{$meeting->start_date}}</td>
+                        <td>{{$meeting->end_date}}</td>
                         <td>{{$meeting->place->getNiceName()}}</td>
                         <td>
                             <a href="/spotkanie/{{$meeting->id}}">
@@ -71,8 +73,12 @@
                     <textarea type="text" class="form-control" name="description" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Data</label>
-                    <input type="datetime-local" class="form-control" name="date" required>
+                    <label>Start</label>
+                    <input type="datetime-local" class="form-control" name="start_date" required>
+                </div>
+                <div class="form-group">
+                    <label>Koniec</label>
+                    <input type="datetime-local" class="form-control" name="end_date" required>
                 </div>
                 <div class="form-group">
                     <label>Miejsce</label>
