@@ -29,7 +29,7 @@
         {{$edition->start_date}} - {{$edition->end_date}}
         <br> <br>
 
-        @if($edition->isUserStudent)
+        @if($isUserStudent)
             Zakupiono dostęp!
         @else
             <form action="/edycja/{{$edition->id}}/kup" method="post">
@@ -40,7 +40,37 @@
     </div>
 </div>
 
-@if($edition->isUserStudent)
+@if($isUserStudent)
+    <div class="card">
+        <div class="card-header">Lista spotkań</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Tytuł</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">Miejsce</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach($meetings as $meeting)
+                    <tr>
+                        <td>{{$meeting->title}}</td>
+                        <td>{{$meeting->start_date}}</td>
+                        <td>{{$meeting->place->getNiceName()}}</td>
+                        <td>
+                            <a href="/spotkanie/{{$meeting->id}}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                    {{ $meetings->links() }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-header">Lista uczestników</div>
         <div class="card-body">
@@ -53,7 +83,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach($edition->students as $key => $student)
+                    @foreach($students as $key => $student)
                     <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$student->name}}</td>

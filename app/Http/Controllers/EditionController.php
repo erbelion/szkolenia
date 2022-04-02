@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Edition;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 use App\Http\Services\EditionService;
 
@@ -11,11 +12,13 @@ class EditionController extends Controller
     public function index($id)
     {
         $edition = Edition::with('course')->findOrFail($id);
-        $edition->isUserStudent = $edition->isUserStudent();
-        $edition->students = $edition->getAllStudentsData();
+        $meetings = Meeting::where('edition_id', $id)->orderBy('updated_at', 'asc')->paginate(10);
 
         return view('singles.edition', [
             'edition' => $edition,
+            'meetings' => $meetings,
+            'isUserStudent' => $edition->isUserStudent(),
+            'students' => $edition->getAllStudentsData()
         ]);
     }
 
