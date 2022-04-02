@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the student record associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Student>
+     */
+    public function student(){
+        return $this->hasOne(Student::class);
+    }
+
+    public function payment(){
+        return $this->hasOne(Payment::class);
+    }
 }

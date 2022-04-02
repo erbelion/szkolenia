@@ -122,10 +122,11 @@ class AdminController extends Controller
             'title' => 'required',
             'description' => 'required',
             'place_id' => 'required|integer',
-            'date' => 'required|date',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
         ]);
 
-        Edition::find($id)->meeting()->create(Meeting::simpleDataArray($request));
+        Edition::find($id)->meetings()->create(Meeting::simpleDataArray($request));
 
         return redirect()->route('admin.meetings', $id)->with('message', 'Utworzono spotkanie.');
     }

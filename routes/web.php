@@ -50,7 +50,10 @@ Route::prefix('admin')->group(function () {
     Route::post('/miejsca/nowy', [AdminController::class, 'newPlace'])->name('admin.places.new');
 });
 
-Route::get('/edycja/{id}', [EditionController::class, 'index'])->name('edition');
+Route::prefix('edycja')->group(function () {
+    Route::get('/{id}', [EditionController::class, 'index'])->name('edition');
+    Route::post('/{id}/kup', [EditionController::class, 'buy'])->name('edition.buy')->middleware('auth');
+});
 
 Route::get('/goscie', [GuestController::class, 'index'])->name('guests');
 Route::post('/goscie', [GuestController::class, 'store'])->name('guests.store');
