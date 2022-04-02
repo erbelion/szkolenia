@@ -36,7 +36,6 @@
                   <tr>
                     <th scope="col">Tytuł</th>
                     <th scope="col">Start</th>
-                    <th scope="col">Koniec</th>
                     <th scope="col">Miejsce</th>
                   </tr>
                 </thead>
@@ -45,7 +44,6 @@
                     <tr>
                         <td>{{$meeting->title}}</td>
                         <td>{{$meeting->start_date}}</td>
-                        <td>{{$meeting->end_date}}</td>
                         <td>{{$meeting->place->getNiceName()}}</td>
                         <td>
                             <a href="/spotkanie/{{$meeting->id}}">
