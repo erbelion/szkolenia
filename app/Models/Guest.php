@@ -11,4 +11,9 @@ class Guest extends Model
         'name',
         'message',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
