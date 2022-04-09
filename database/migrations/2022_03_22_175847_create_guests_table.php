@@ -15,7 +15,7 @@ class CreateGuestsTable extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->nullable()->default(null);
+            $table->foreignId('user_id')->references('id')->on('users')->default(null)->nullable();
             $table->string("name");
             $table->string("message");
             $table->timestamps();

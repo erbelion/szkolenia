@@ -28,13 +28,13 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Podytuł</th>
-                    <th scope="col">Cena</th>
-                    <th scope="col">Liczba użytkowników</th>
-                    <th scope="col">Zobacz</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Podytuł</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Liczba użytkowników</th>
+                        <th scope="col">Zobacz</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach($editions as $edition)
