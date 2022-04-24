@@ -9,9 +9,7 @@ class GuestController extends Controller
 {
     public function index()
     {
-
         return view('guests', ['guests' => Guest::select('name', 'message')->get()]);
-        // return view('guests');
     }
 
     public function store(Request $request)

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EditionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MeetingController;
 
 Auth::routes();
 
@@ -54,6 +55,11 @@ Route::prefix('edycja')->group(function () {
     Route::get('/{id}', [EditionController::class, 'index'])->name('edition');
     Route::post('/{id}/kup', [EditionController::class, 'buy'])->name('edition.buy')->middleware('auth');
 });
+
+Route::prefix('spotkanie')->group(function () {
+    Route::get('/{id}', [MeetingController::class, 'index'])->name('meetings');
+});
+
 
 Route::get('/goscie', [GuestController::class, 'index'])->name('guests');
 Route::post('/goscie', [GuestController::class, 'store'])->name('guests.store');
