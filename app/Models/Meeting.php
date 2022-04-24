@@ -35,4 +35,23 @@ class Meeting extends Model
     {
         return $this->belongsTo(Place::class);
     }
+
+    public function students()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function getAllStudentsData()
+    {
+        return DB::table('students')
+        ->where('students.edition_id', $this->id)
+        ->join('users', 'users.id', '=', 'students.user_id')
+        ->select('users.name', 'users.email')
+        ->get();
+    }
+
+    public function isUserStudent()
+    {
+        return $this->students()->where('user_id', auth()->user()->id)->exists();
+    }
 }

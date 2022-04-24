@@ -11,10 +11,10 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Miejsce</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Miejsce</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach($places as $place)
