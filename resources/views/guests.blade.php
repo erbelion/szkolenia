@@ -5,7 +5,7 @@
     @csrf
     <div class="form-group">
         <label>Nazwa użytkownika</label>
-        <input type="text" class="form-control" name="user_name" value={{auth()->user() ? auth()->user()->name : ''}} required>
+        <input type="text" class="form-control" name="user_name" value="{{auth()->user() ? auth()->user()->name : ''}}" required>
     </div>
     <div class="form-group">
         <label>Komentarz</label>
