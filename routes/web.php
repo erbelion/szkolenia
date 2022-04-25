@@ -58,6 +58,7 @@ Route::prefix('edycja')->group(function () {
 
 Route::prefix('spotkanie')->group(function () {
     Route::get('/{id}', [MeetingController::class, 'index'])->name('meetings');
+    Route::post('/{id}/store', [MeetingController::class, 'store'])->name('meetings.store');
 });
 
 
