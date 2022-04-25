@@ -2,5 +2,5 @@
 
 @section('body')
     @include('elements.editions')
-    @include('elements.meetings')
+    {{-- @include('elements.meetings') --}}
 @endsection

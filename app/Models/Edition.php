@@ -59,7 +59,11 @@ class Edition extends Model
 
     public function isUserStudent()
     {
-        return $this->students()->where('user_id', auth()->user()->id)->exists();
+        $user = auth()->user();
+        if($user)
+            return $this->students()->where('user_id', $user->id)->exists();
+        
+        return false;
     }
 
     public static function getAllEditions(){
