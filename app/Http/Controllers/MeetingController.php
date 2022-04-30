@@ -7,6 +7,8 @@ use App\Models\Meeting;
 use App\Models\Place;
 use App\Models\Edition;
 use App\Models\Student;
+use App\Models\Comment;
+use App\Models\User;
 
 class MeetingController extends Controller
 {
@@ -20,6 +22,8 @@ class MeetingController extends Controller
         $place_id = $meeting->place_id;
         $edition_id = $meeting->edition_id;
         $place = Place::where('id', $place_id)->findOrFail($place_id);
+        $commentTable = Comment::all();
+
 
         if(!auth()->user() || !Meeting::with('edition')->findOrFail($edition_id)->edition->isUserStudent())
             return redirect()->back()->with('errorMessage', 'Nie jesteś studentem tej edycji');
@@ -27,6 +31,7 @@ class MeetingController extends Controller
 
 
         return view('singles.meeting', [
+            'id'=> $id,
             'title' => $title,
             'description' => $description,
             'start_date' => $start_date,
@@ -39,6 +44,20 @@ class MeetingController extends Controller
             'street_number' => $place->street_number,
             'apartment_number' => $place->apartment_number,
             'room' => $place->room,
+
+            'comments' => $commentTable,
         ]);
+    }
+    //Comment store
+    public function store(Request $request, $id)
+    {
+
+        Comment::create([
+            'meeting_id'=> $id,
+            'user_id' => auth()->user() ? auth()->user()->id : null,
+            'message' => $request->review,
+        ]);
+
+        return redirect()->back()->with('message', 'Dodano komentarz' . $request->title);
     }
 }
