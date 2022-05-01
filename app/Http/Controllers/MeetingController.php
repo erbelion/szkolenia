@@ -23,9 +23,9 @@ class MeetingController extends Controller
         $edition_id = $meeting->edition_id;
         $place = Place::where('id', $place_id)->findOrFail($place_id);
         $commentTable = Comment::all();
+        $user = auth()->user();
 
-
-        if(!auth()->user() || !Meeting::with('edition')->findOrFail($edition_id)->edition->isUserStudent())
+        if(!$user || ($user->rank != 1 && !Meeting::with('edition')->findOrFail($edition_id)->edition->isUserStudent()))
             return redirect()->back()->with('errorMessage', 'Nie jesteś studentem tej edycji');
 
 
