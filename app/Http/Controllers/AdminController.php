@@ -126,7 +126,12 @@ class AdminController extends Controller
             'end_date' => 'required|date',
         ]);
 
-        Edition::find($id)->meetings()->create(Meeting::simpleDataArray($request));
+        $edition = Edition::find($id);
+
+        if($edition->start_date >= $request->start_date || $edition->end_date <= $request->end_date)
+            return redirect()->back()->with('errorMessage', 'Nie utworzono spotkania - spotkanie nie mieści się w ramach czasowych edycji');
+
+        $edition->meetings()->create(Meeting::simpleDataArray($request));
 
         return redirect()->route('admin.meetings', $id)->with('message', 'Utworzono spotkanie.');
     }
