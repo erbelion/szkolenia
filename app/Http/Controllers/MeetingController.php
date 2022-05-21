@@ -22,9 +22,11 @@ class MeetingController extends Controller
         $place_id = $meeting->place_id;
         $edition_id = $meeting->edition_id;
         $place = Place::where('id', $place_id)->findOrFail($place_id);
+        $users = User::select('id','name')->get(['id','name']);
         $commentTable = Comment::all();
         $user = auth()->user();
 
+        //to tutaj wywala mi buga jak proboje czasem sie dostac do spotkania uzytkownikiem który ma wykupiony dostęp
         if(!$user || ($user->rank != 1 && !Meeting::with('edition')->findOrFail($edition_id)->edition->isUserStudent()))
             return redirect()->back()->with('errorMessage', 'Nie jesteś studentem tej edycji');
 
@@ -44,6 +46,9 @@ class MeetingController extends Controller
             'street_number' => $place->street_number,
             'apartment_number' => $place->apartment_number,
             'room' => $place->room,
+            
+
+            'users' => $users,
 
             'comments' => $commentTable,
         ]);
