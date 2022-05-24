@@ -18,11 +18,9 @@ class RaportsController extends Controller
 
     public function earnings(Request $request)
     {
-        $query = DB::select(DB::raw("SELECT subtitle, users_count as Students, users_count*price as Income from editions where start_date BETWEEN '$request->start_date' AND '$request->end_date'"));
+        $result = DB::select(DB::raw("SELECT subtitle, users_count as Students, users_count*price as Income from editions where start_date BETWEEN '$request->start_date' AND '$request->end_date'"));
 
-        dd($query);
-
-
+        return view('admin.raport_result', ['result' => $result]);
     }
 
     // public function query2()
