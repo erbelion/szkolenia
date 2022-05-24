@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EditionController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\RaportsController;
 
 Auth::routes();
 
@@ -49,6 +50,9 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/miejsca', [AdminController::class, 'places'])->name('admin.places');
     Route::post('/miejsca/nowy', [AdminController::class, 'newPlace'])->name('admin.places.new');
+
+    Route::get('/raporty', [RaportsController::class, 'generateReports']);
+    Route::post('/zarobki', [RaportsController::class, 'earnings']);
 });
 
 Route::prefix('edycja')->group(function () {

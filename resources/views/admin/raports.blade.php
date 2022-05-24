@@ -2,12 +2,13 @@
 
 @section('body')
 
-<Form name="raports" action="RaportsController.php" method="post">
-    <p>Start date: <input type="data" name="Start date" /></p>
-    <p>End date: <input type="data" name="End date" /></p>
+<form name="raports" action="/admin/zarobki" method="post">
+    @csrf
+    <p>Start date: <input type="datetime-local" name="start_date" /></p>
+    <p>End date: <input type="datetime-local" name="end_date" /></p>
 
     <p><input type="submit" name="submit" value="confirm"/></p>
-
+</form>
     
     
 
