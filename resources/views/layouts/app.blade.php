@@ -78,6 +78,8 @@
                                         <a class="dropdown-item" href="/admin">Panel administratora</a>
                                     @endif
 
+                                    <a class="dropdown-item" href="/wydatki">Wydatki</a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
