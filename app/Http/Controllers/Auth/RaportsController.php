@@ -22,13 +22,6 @@ class RaportsController extends Controller
 
         return view('admin.raport_result', ['result' => $result]);
     }
-
-    // public function query2()
-    // {
-    //     $query = DB::select(DB::raw("SELECT DISTINCT SUBSTRING(start_date,1,7) as Month, 
-    //     sum(price*users_count) AS Income from editions where SUBSTRING(start_date,1,7)=SUBSTRING(start_date,1,7) 
-    //     group by month"));
-    // }
     
 }
 

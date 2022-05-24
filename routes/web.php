@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EditionController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\RaportsController;
@@ -68,6 +69,10 @@ Route::prefix('spotkanie')->group(function () {
 
 Route::get('/goscie', [GuestController::class, 'index'])->name('guests');
 Route::post('/goscie', [GuestController::class, 'store'])->name('guests.store');
+
+Route::prefix('wydatki')->group(function () {
+    Route::get('/', [ExpenseController::class, 'index']);
+});
 
 
 // Route::get('logowanie', [LoginController::class, 'showLoginForm']);
