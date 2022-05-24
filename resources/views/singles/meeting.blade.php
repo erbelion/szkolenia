@@ -31,10 +31,14 @@
 @if ($id === $comment->meeting_id)
 <div class="card-body flex-column">
         <div class="card">
-            <div class="card-header h-100"></div>
+            @foreach($users as $user)
+            @if($comment->user_id == $user->id)
+            <div class="card-header h-100">{{$user->name}}</div>
             <div class="card-body">
                 <p>{{$comment->message}}</p>
             </div>
+            @endif
+            @endforeach
         </div>
     </div>
 @endif
