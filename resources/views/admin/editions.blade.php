@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <label>Cena (w groszach)</label>
-                    <input type="number" class="form-control" name="price" required min=1 value=5000>
+                    <input type="number" class="form-control" name="price" required min="1" value=5000>
                 </div>
                 <div class="form-group">
                     <label>Limit użytkowników</label>

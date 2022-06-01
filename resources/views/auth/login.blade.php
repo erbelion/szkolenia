@@ -57,11 +57,11 @@
                                     zaloguj
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         zapomniałeś hasła?
                                     </a>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </form>
