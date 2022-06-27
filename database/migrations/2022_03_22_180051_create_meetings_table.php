@@ -19,7 +19,8 @@ class CreateMeetingsTable extends Migration
             $table->string('description');
             $table->foreignId('place_id')->references('id')->on('places');
             $table->foreignId('edition_id')->references('id')->on('editions');
-            $table->date('date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
