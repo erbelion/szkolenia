@@ -27,6 +27,13 @@
                     <td>{{$item->Income/100}} PLN</td>
                 </tr>
                 @endforeach
+                @foreach($summ as $item)
+                <tr>
+                    <th> Suma: </td>
+                    <th>{{$item->Students}}</td>
+                    <th>{{$item->Summ/100}} PLN</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
