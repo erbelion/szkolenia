@@ -25,11 +25,14 @@
                 <tr>
                     <td>{{$key}}</td>
                     <td>{{$item["count"]}}</td>
-                    <td>{{$item["sum"]}} PLN</td>
+                    <td>{{$item["sum"] / 100}} PLN</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        <div>
+            suma wydanych pieniędzy: {{$sum / 100}} PLN
+        </div>
     </div>
 </div>
 
