@@ -13,4 +13,9 @@ class Payment extends Model
         'amount',
         'is_paid'
     ];
+
+    public function edition()
+    {
+        return $this->belongsTo(Edition::class);
+    }
 }

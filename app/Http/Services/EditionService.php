@@ -7,8 +7,8 @@ use App\Models\Edition;
 
 class EditionService
 {
-    public static function buyAccess($id){
-        $user = auth()->user();
+    public static function buyAccess($id, $user = null){
+        $user = $user ?? auth()->user();
 
         if($user->student()->where('edition_id', $id)->exists())
             return 'Kupiono już dostęp do tej edycji';
@@ -19,7 +19,7 @@ class EditionService
             return 'Edycja jest pełna';
 
         //w innym wypadku da się kupić dostęp
-        $user->payment()->create([
+        $user->payments()->create([
             'edition_id' => $id,
             'amount' => $edition->price
         ]);
@@ -28,7 +28,7 @@ class EditionService
         $edition->save();
 
         //Zaślepka; to powinien zatwierdzić webhook ze strony przyjmującej płatności
-            $user->payment()->where('edition_id', $id)->update([
+            $user->payments()->where('edition_id', $id)->update([
                 'is_paid' => true
             ]);
 

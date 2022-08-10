@@ -11,25 +11,32 @@
 <div class="card">
     <div class="card-header">Raport</div>
     <div class="card-body">
-        <table class="table">
+        Poniżej wyświetlone są Twoje wydatki z podziałem na miesiące.
+        <table class="table sortable">
             <thead>
               <tr>
                 <th scope="col">Miesiąc</th>
-                <th scope="col">Koszty</th>
+                <th scope="col">Ilość kupionych rzeczy</th>
+                <th scope="col">Koszta</th>
               </tr>
             </thead>
             <tbody>
-                @foreach($result as $item)
+                @foreach($result as $key => $item)
                 <tr>
-                    <td>{{$item->Month}}</td>
-                    <td>{{$item->Income/100}} PLN</td>
+                    <td>{{$key}}</td>
+                    <td>{{$item["count"]}}</td>
+                    <td>{{$item["sum"]}} PLN</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-    
 
 
+
+@endsection
+
+@section('bottom')
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 @endsection

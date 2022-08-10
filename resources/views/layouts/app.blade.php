@@ -67,7 +67,7 @@
 
                                     {{-- <a class="dropdown-item" href="/spotkania">Spotkania</a> --}}
                                     {{-- <a class="dropdown-item" href="/panel">Panel</a> --}}
-                                    
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -95,5 +95,7 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('bottom')
 </body>
 </html>
