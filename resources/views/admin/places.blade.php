@@ -42,8 +42,8 @@
                     <input type="text" class="form-control" name="city" required>
                 </div>
                 <div class="form-group">
-                    <label>Kod pocztowy</label>
-                    <input type="number" class="form-control" name="postal_code" required>
+                    <label>Kod pocztowy (XX-XXX)</label>
+                    <input pattern="^\d{2}-\d{3}$" type="text" class="form-control" name="postal_code" required>
                 </div>
                 <div class="form-group">
                     <label>Ulica</label>
@@ -51,15 +51,15 @@
                 </div>
                 <div class="form-group">
                     <label>Numer ulicy</label>
-                    <input type="number" class="form-control" name="street_number" required>
+                    <input type="number" class="form-control" name="street_number" min=1 required>
                 </div>
                 <div class="form-group">
                     <label>Numer mieszkania</label>
-                    <input type="number" class="form-control" name="apartment_number">
+                    <input type="number" class="form-control" name="apartment_number" min=1>
                 </div>
                 <div class="form-group">
                     <label>Sala</label>
-                    <input type="number" class="form-control" name="room">
+                    <input type="number" class="form-control" name="room" min=1>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Dodaj</button>

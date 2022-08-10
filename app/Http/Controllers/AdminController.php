@@ -95,7 +95,7 @@ class AdminController extends Controller
         $request->validate([
             'country' => 'required',
             'city' => 'required',
-            'postal_code' => 'required|integer',
+            'postal_code' => 'required',
             'street_name' => 'required',
             'street_number' => 'required|integer',
         ]);
