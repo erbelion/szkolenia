@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group">
                     <label>Limit użytkowników</label>
-                    <input type="number" class="form-control" name="users_limit" required>
+                    <input type="number" class="form-control" name="users_limit" min=1 value=100 required>
                 </div>
                 <div class="form-group">
                     <label>Start</label>

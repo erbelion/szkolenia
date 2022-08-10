@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                     <label>Miejsce</label>
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="place_id">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="place_id" required>
                         @foreach ($places as $place)
                             <option value="{{$place->id}}">{{$place->getNiceName()}}</option>
                         @endforeach

@@ -52,8 +52,8 @@
                     <input type="text" class="form-control" name="organiser_name" required>
                 </div>
                 <div class="form-group">
-                    <label>Adres organizatora</label>
-                    <input type="text" class="form-control" name="organiser_url" required>
+                    <label>Adres URL organizatora</label>
+                    <input type="url" class="form-control" name="organiser_url" required>
                 </div>
                 <div class="form-group">
                     <label>Opis</label>

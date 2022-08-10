@@ -21,24 +21,22 @@
             </thead>
             <tbody>
                 @foreach($result as $item)
-                <tr>
-                    <td>{{$item->subtitle}}</td>
-                    <td>{{$item->Students}}</td>
-                    <td>{{$item->Income/100}} PLN</td>
-                </tr>
+                    <tr>
+                        <td>{{$item->subtitle}}</td>
+                        <td>{{$item->Students}}</td>
+                        <td>{{$item->Income/100}} PLN</td>
+                    </tr>
                 @endforeach
-                @foreach($summ as $item)
                 <tr>
                     <th> Suma: </td>
-                    <th>{{$item->Students}}</td>
-                    <th>{{$item->Summ/100}} PLN</td>
+                    <th></td>
+                    <th>{{$sum/100}} PLN</td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
     </div>
 </div>
-    
+
 
 
 @endsection
