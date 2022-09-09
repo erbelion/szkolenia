@@ -67,11 +67,15 @@ class AdminController extends Controller
         $request->validate([
             'subtitle' => 'required',
             'description' => 'required',
-            'price' => 'required|integer|min:1',
+            'price_zl' => 'required|integer|min:0',
+            'price_gr' => 'required|integer|min:0|max:99',
             'users_limit' => 'required|integer|min:1',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
         ]);
+
+        if($request->end_date <= $request->start_date)
+            return redirect()->back()->with('errorMessage', 'Data rozpoczęcia edycji musi być wcześniejsza niż data zakończenia edycji');
 
         $newEditionNo = Edition::where('course_id', $id)->count() + 1;
 
@@ -125,6 +129,9 @@ class AdminController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
         ]);
+
+        if($request->end_date <= $request->start_date)
+            return redirect()->back()->with('errorMessage', 'Data rozpoczęcia spotkania musi być wcześniejsza niż data zakończenia edycji');
 
         $edition = Edition::find($id);
 

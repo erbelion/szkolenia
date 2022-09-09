@@ -25,7 +25,7 @@ class Edition extends Model
         return [
             'subtitle' => $data->subtitle,
             'description' => $data->description,
-            'price' => $data->price,
+            'price' => $data->price_zl * 100 + $data->price_gr,
             'users_limit' => $data->users_limit,
             'start_date' => $data->start_date,
             'end_date' => $data->end_date,
@@ -62,7 +62,7 @@ class Edition extends Model
         $user = auth()->user();
         if($user)
             return $this->students()->where('user_id', $user->id)->exists();
-        
+
         return false;
     }
 

@@ -69,8 +69,13 @@
                     <textarea type="text" class="form-control" name="description" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Cena (w groszach)</label>
-                    <input type="number" class="form-control" name="price" required min=1 value=5000>
+                    <label>Cena</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="price_zl" required min=0 value=50>
+                        <span class="input-group-text">zł</span>
+                        <input type="number" class="form-control" name="price_gr" required min=0 max=99 value=0>
+                        <span class="input-group-text">gr</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Limit użytkowników</label>
